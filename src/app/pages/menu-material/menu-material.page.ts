@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Router, ActivatedRoute, ParamMap, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-menu-material',
@@ -27,10 +28,24 @@ export class MenuMaterialPage implements OnInit {
 
   selectPath = '';
   subTitle = '';
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    this.subTitle = this.pages[0].subTitle;
+    // this.subTitle = this.pages[0].subTitle;
+    this.router.events.subscribe((event: RouterEvent) => {
+      this.selectPath = event.url;
+      switch (this.selectPath) {
+        case this.pages[0].url:
+          this.subTitle = this.pages[0].subTitle;
+          break;
+        case this.pages[1].url:
+          this.subTitle = this.pages[1].subTitle;
+          break;
+        case this.pages[2].url:
+          this.subTitle = this.pages[2].subTitle;
+          break;
+      }
+    });
   }
   @ViewChild('sidenav') sidenav: MatSidenav;
 

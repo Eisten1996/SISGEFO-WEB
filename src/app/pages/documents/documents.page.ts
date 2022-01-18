@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { docsList } from 'src/app/core/mock/documentsListMock';
+import { Document } from 'src/app/core/models/document.model';
 
 @Component({
   selector: 'app-documents',
@@ -6,10 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./documents.page.scss'],
 })
 export class DocumentsPage implements OnInit {
+  docs: Document[] = docsList;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

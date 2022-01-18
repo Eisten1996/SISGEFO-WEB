@@ -1,41 +1,14 @@
 <ion-content>
   <ion-list>
-    <ion-card class="ion-padding-bottom" color="">
+    <ion-card class="ion-padding-bottom" *ngFor="let item of docs">
       <ion-grid>
         <ion-row class="ion-align-items-center">
           <ion-col size="8">
             <ion-card-header>
-              <ion-card-title>Documento 1 - MAT </ion-card-title>
+              <ion-card-title>{{item.name}}</ion-card-title>
             </ion-card-header>
 
-            <ion-card-content>
-              Keep close to Nature's heart... and break clear away, once in
-              awhile, and climb a mountain or spend a week in the woods. Wash
-              your spirit clean.
-            </ion-card-content>
-          </ion-col>
-          <ion-col size="4">
-            <ion-row class="ion-justify-content-center">
-              <ion-button color="medium">Solicitar</ion-button>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-
-    <ion-card>
-      <ion-grid>
-        <ion-row class="ion-align-items-center">
-          <ion-col size="8">
-            <ion-card-header>
-              <ion-card-title>Documento 2 - SUM </ion-card-title>
-            </ion-card-header>
-
-            <ion-card-content>
-              Keep close to Nature's heart... and break clear away, once in
-              awhile, and climb a mountain or spend a week in the woods. Wash
-              your spirit clean.
-            </ion-card-content>
+            <ion-card-content> {{item.description}} </ion-card-content>
           </ion-col>
           <ion-col size="4">
             <ion-row class="ion-justify-content-center">

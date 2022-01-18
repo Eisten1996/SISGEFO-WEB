@@ -1,9 +1,68 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>updloadPdf</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="ion-padding">
+  <label for="file" (change)="onUpload($event)">
+    <ion-card class="ion-text-center ion-padding" button="true"
+      ><ion-icon class="f-50" name="document-text-outline"></ion-icon>
+      <div>
+        <ion-text>{{nameFile}}</ion-text>
+      </div>
+    </ion-card>
+    <input type="file" id="file" />
+  </label>
 
-<ion-content>
+  <ion-item>
+    <ion-label position="stacked">Ingresar rango de paginas</ion-label>
+    <ion-input placeholder="1-4" type="text"></ion-input>
+  </ion-item>
 
+  <ion-list>
+    <ion-radio-group>
+      <ion-list-header>
+        <ion-label> Elegir </ion-label>
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Blanco y negro</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Color</ion-label>
+        <ion-radio value="2"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
+  </ion-list>
+
+  <ion-button expand="block">IMPRIMIR</ion-button>
+
+  <!-- <div *ngIf="pdfSrc">
+    <div *ngFor="let loop of counter(totalPages); let i = index">
+      <div class="left">
+        <h1>{{ i + 1 }}</h1>
+        <input
+          (change)="isSelect($event)"
+          type="checkbox"
+          name="'page'+ (i + 1)"
+          [id]="'page' + (i + 1)"
+          [value]="i + 1"
+        />
+      </div>
+      <pdf-viewer
+        class="left"
+        [src]="pdfSrc"
+        [show-all]="false"
+        [page]="i + 1"
+        [zoom]="0.3"
+        (after-load-complete)="afterLoadComplete($event)"
+      >
+      </pdf-viewer>
+    </div>
+
+    <div class="left">
+      <h1 *ngIf="rows.length != 0">Paginas seleccionadas</h1>
+      <h1 *ngIf="rows.length == 0">Ninguna pagina seleccionada</h1>
+      <p class="left" *ngFor="let item of rows">{{ item.page }}</p>
+    </div>
+
+    <button class="rigth" (click)="submit()" type="submit">Enviar PDF</button>
+  </div> -->
 </ion-content>

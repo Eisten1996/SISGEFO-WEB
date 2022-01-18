@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { UpdloadPdfPageRoutingModule } from './updload-pdf-routing.module';
 
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 import { UpdloadPdfPage } from './updload-pdf.page';
 
 @NgModule({
@@ -13,8 +15,9 @@ import { UpdloadPdfPage } from './updload-pdf.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    UpdloadPdfPageRoutingModule
+    UpdloadPdfPageRoutingModule,
+    PdfViewerModule,
   ],
-  declarations: [UpdloadPdfPage]
+  declarations: [UpdloadPdfPage],
 })
 export class UpdloadPdfPageModule {}
