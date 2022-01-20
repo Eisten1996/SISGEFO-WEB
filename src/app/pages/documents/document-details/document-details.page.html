@@ -7,51 +7,65 @@
 
     <ion-card-content>
       <ion-text class="ion-padding-bottom">{{documentR.description}}</ion-text>
-      <ion-item>
-        <ion-label position="stacked">Ingresar numero de impresiones</ion-label>
-        <ion-input type="number"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Precio</ion-label>
-        <ion-input disabled="" [ngModel]="10"></ion-input>
-      </ion-item>
+      <form #details="ngForm">
+        <ion-item>
+          <ion-label position="stacked"
+            >Ingresar numero de impresiones</ion-label
+          >
+          <ion-input
+            type="number"
+            name="copy"
+            [(ngModel)]="copy"
+            required
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Precio</ion-label>
+          <ion-input
+            disabled
+            [value]="copy*this.documentR.pages*0.2+0"
+          ></ion-input>
+        </ion-item>
 
-      <ion-list>
-        <ion-radio-group>
-          <ion-list-header>
-            <ion-label> Elegir </ion-label>
-          </ion-list-header>
+        <ion-list>
+          <ion-radio-group name="typePrint" [(ngModel)]="typePrint" required>
+            <ion-list-header>
+              <ion-label> Elegir </ion-label>
+            </ion-list-header>
 
-          <ion-item>
-            <ion-label>Blanco y negro</ion-label>
-            <ion-radio value="1"></ion-radio>
-          </ion-item>
+            <ion-item>
+              <ion-label>Blanco y negro</ion-label>
+              <ion-radio value="1"></ion-radio>
+            </ion-item>
 
-          <ion-item>
-            <ion-label>Color</ion-label>
-            <ion-radio value="2"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-list>
-      <ion-list>
-        <ion-radio-group>
-          <ion-list-header>
-            <ion-label> Elegir medio de pago </ion-label>
-          </ion-list-header>
+            <ion-item>
+              <ion-label>Color</ion-label>
+              <ion-radio value="2"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <ion-list>
+          <ion-radio-group name="typePay" [(ngModel)]="typePay" required>
+            <ion-list-header>
+              <ion-label> Elegir medio de pago </ion-label>
+            </ion-list-header>
 
-          <ion-item>
-            <ion-label>Efectivo</ion-label>
-            <ion-radio value="1"></ion-radio>
-          </ion-item>
+            <ion-item>
+              <ion-label>Efectivo</ion-label>
+              <ion-radio value="1"></ion-radio>
+            </ion-item>
 
-          <ion-item>
-            <ion-label>Tarjeta</ion-label>
-            <ion-radio value="2"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-      </ion-list>
+            <ion-item>
+              <ion-label>Tarjeta</ion-label>
+              <ion-radio value="2"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
 
-      <ion-button expand="block">IMPRIMIR</ion-button>
+        <ion-button (click)="send()" [disabled]="!details.valid" expand="block"
+          >IMPRIMIR</ion-button
+        >
+      </form>
     </ion-card-content>
   </ion-card>
 </ion-content>

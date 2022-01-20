@@ -35,4 +35,20 @@ export class DocumentService {
       formData
     );
   }
+
+  uploadDocumentManaged(document: any) {
+    console.log(document);
+    const formData = new FormData();
+    formData.append('title', document.title);
+    formData.append('file', new File([document.file], document.fileName));
+    formData.append('fileName', document.fileName);
+    formData.append('pages', document.pags);
+    formData.append('description', document.description);
+    console.log(`${environment.API_PHOTOCOPIER}/managed-documents`);
+
+    return this.http.post<Document>(
+      `${environment.API_PHOTOCOPIER}/managed-documents`,
+      formData
+    );
+  }
 }

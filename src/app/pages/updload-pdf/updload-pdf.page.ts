@@ -69,7 +69,7 @@ export class UpdloadPdfPage implements OnInit {
         };
         this.printService.print(this.print).subscribe((data) => {
           console.log(data);
-          this.router.navigate(['/SISGEFO']);
+          this.router.navigate(['/SISGEFO/menu/prints']);
         });
       },
       (error) => {
