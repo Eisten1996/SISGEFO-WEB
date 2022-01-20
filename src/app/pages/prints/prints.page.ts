@@ -17,6 +17,5 @@ export class PrintsPage implements OnInit {
 
   async loadDocuments() {
     this.docs = await this.printService.getPrints();
-    console.log(this.docs);
   }
 }

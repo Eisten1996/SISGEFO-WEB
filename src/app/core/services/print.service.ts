@@ -14,6 +14,6 @@ export class PrintService {
   }
 
   getPrints() {
-    return this.http.get(`${environment.API_PHOTOCOPIER}/prints`);
+    return this.http.get(`${environment.API_PHOTOCOPIER}/prints`).toPromise();
   }
 }
