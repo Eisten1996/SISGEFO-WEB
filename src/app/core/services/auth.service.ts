@@ -34,7 +34,6 @@ export class AuthService {
     //   }
     console.log(auth);
 
-    return this.http.post(`${environment.API_PHOTOCOPIER}/print`, auth);
-    // http://localhost:8091/unmsm/fisi/photocopier/v1/students/login.
+    return this.http.post(`${environment.API_PHOTOCOPIER}/students/login`, auth);
   }
 }
