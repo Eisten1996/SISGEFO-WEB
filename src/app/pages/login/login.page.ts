@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class LoginPage implements OnInit {
   auth: Auth;
+  user: any;
   constructor(
     private authService: AuthService,
     public alertController: AlertController,
@@ -19,14 +20,13 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
-  login(form) {
-    // this.authService.login(form.value).subscribe((res) => {
-    //   this.router.navigateByUrl('home');
-    // });
+  async login(form) {
     this.auth = form.value;
-    if (this.authService.login(this.auth) == null) {
+    this.user = await this.authService.login(this.auth);
+    if (this.user.id == null) {
       this.presentAlert();
     } else {
+      localStorage.setItem('userData', JSON.stringify(this.user));
       window.location.reload();
       this.router.navigate(['/SISGEFO']);
     }
