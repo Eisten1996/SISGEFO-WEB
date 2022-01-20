@@ -53,21 +53,13 @@ export class DocumentDetailsPage implements OnInit {
       description: this.documentR.description,
     };
 
-    this.documentService.uploadDocumentManaged(this.documentUpload).subscribe(
-      (data) => {
-        console.log(data);
-        this.print = {
-          id: data.id,
-          origin: 'MANAGED',
-        };
-        this.printService.print(this.print).subscribe((data) => {
-          console.log(data);
-          this.router.navigate(['/SISGEFO/menu/prints']);
-        });
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.print = {
+      id: this.documentR.id,
+      origin: 'MANAGED',
+    };
+    this.printService.print(this.print).subscribe((data) => {
+      console.log(data);
+      this.router.navigate(['/SISGEFO/menu/prints']);
+    });
   }
 }
