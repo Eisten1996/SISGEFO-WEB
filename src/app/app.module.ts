@@ -7,6 +7,8 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     IonicModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    PdfViewerModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

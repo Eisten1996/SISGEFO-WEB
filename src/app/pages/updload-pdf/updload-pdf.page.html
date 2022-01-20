@@ -1,5 +1,14 @@
 <ion-content class="ion-padding">
   <label for="file" (change)="onUpload($event)">
+    <div>
+      <pdf-viewer
+        [src]="pdfSrc"
+        [show-all]="false"
+        [zoom]="0.3"
+        (after-load-complete)="afterLoadComplete($event)"
+      >
+      </pdf-viewer>
+    </div>
     <ion-card class="ion-text-center ion-padding" button="true"
       ><ion-icon class="f-50" name="document-text-outline"></ion-icon>
       <div>
@@ -8,61 +17,48 @@
     </ion-card>
     <input type="file" id="file" />
   </label>
+  <ion-progress-bar type="indeterminate" *ngIf="loading"></ion-progress-bar>
+  <form action="" #print="ngForm">
+    <ion-item *ngIf="showInputs">
+      <ion-label position="stacked">Ingresar rango de paginas</ion-label>
+      <ion-input
+        [(ngModel)]="pagsPrints"
+        [placeholder]="'1 - '+totalPages"
+        type="text"
+        required
+        name="pagsPrints"
+      ></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="stacked">Ingresar rango de paginas</ion-label>
-    <ion-input placeholder="1-4" type="text"></ion-input>
-  </ion-item>
+    <ion-list *ngIf="showInputs">
+      <ion-radio-group name="typePrint" [(ngModel)]="typePrint" required>
+        <ion-list-header>
+          <ion-label> Elegir </ion-label>
+        </ion-list-header>
 
-  <ion-list>
-    <ion-radio-group>
-      <ion-list-header>
-        <ion-label> Elegir </ion-label>
-      </ion-list-header>
+        <ion-item>
+          <ion-label>Blanco y negro</ion-label>
+          <ion-radio value="1"></ion-radio>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Blanco y negro</ion-label>
-        <ion-radio value="1"></ion-radio>
-      </ion-item>
+        <ion-item>
+          <ion-label>Color</ion-label>
+          <ion-radio value="2"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </form>
 
-      <ion-item>
-        <ion-label>Color</ion-label>
-        <ion-radio value="2"></ion-radio>
-      </ion-item>
-    </ion-radio-group>
-  </ion-list>
-
-  <ion-button expand="block">IMPRIMIR</ion-button>
-
-  <!-- <div *ngIf="pdfSrc">
-    <div *ngFor="let loop of counter(totalPages); let i = index">
-      <div class="left">
-        <h1>{{ i + 1 }}</h1>
-        <input
-          (change)="isSelect($event)"
-          type="checkbox"
-          name="'page'+ (i + 1)"
-          [id]="'page' + (i + 1)"
-          [value]="i + 1"
-        />
-      </div>
-      <pdf-viewer
-        class="left"
-        [src]="pdfSrc"
-        [show-all]="false"
-        [page]="i + 1"
-        [zoom]="0.3"
-        (after-load-complete)="afterLoadComplete($event)"
-      >
-      </pdf-viewer>
+  <ion-button
+    (click)="loadPDF()"
+    *ngIf="showInputs"
+    expand="block"
+    [disabled]="!print.valid"
+    >IMPRIMIR</ion-button
+  >
+  <ion-card *ngIf="!showInputs" class="ion-text-center ion-padding">
+    <div>
+      <ion-text class="ion-padding">Seleccione un PDF</ion-text>
     </div>
-
-    <div class="left">
-      <h1 *ngIf="rows.length != 0">Paginas seleccionadas</h1>
-      <h1 *ngIf="rows.length == 0">Ninguna pagina seleccionada</h1>
-      <p class="left" *ngFor="let item of rows">{{ item.page }}</p>
-    </div>
-
-    <button class="rigth" (click)="submit()" type="submit">Enviar PDF</button>
-  </div> -->
+  </ion-card>
 </ion-content>

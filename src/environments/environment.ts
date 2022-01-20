@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API_INTEGRACION: 'http://localhost:8090/unmsm/esb/v1',
+  API_PHOTOCOPIER: 'http://localhost:8091/unmsm/fisi/photocopier/v1',
 };
 
 /*

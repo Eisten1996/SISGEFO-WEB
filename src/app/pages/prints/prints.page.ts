@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DocumentService } from 'src/app/core/services/document.service';
+import { PrintService } from 'src/app/core/services/print.service';
 
 @Component({
   selector: 'app-prints',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./prints.page.scss'],
 })
 export class PrintsPage implements OnInit {
-
-  constructor() { }
+  docs: any;
+  constructor(private printService: PrintService) {}
 
   ngOnInit() {
+    this.loadDocuments();
   }
 
+  async loadDocuments() {
+    this.docs = await this.printService.getPrints();
+    console.log(this.docs);
+  }
 }

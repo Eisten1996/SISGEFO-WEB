@@ -1,15 +1,12 @@
 <ion-content>
-  <ion-card>
+  <ion-progress-bar *ngIf="!loading" type="indeterminate"></ion-progress-bar>
+  <ion-card *ngIf="loading">
     <ion-card-header>
-      <ion-card-title>DOCUMENTO 1</ion-card-title>
+      <ion-card-title>{{documentR.title}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      <ion-text class="ion-padding-bottom"
-        >Keep close to Nature's heart... and break clear away, once in awhile,
-        and climb a mountain or spend a week in the woods. Wash your spirit
-        clean.</ion-text
-      >
+      <ion-text class="ion-padding-bottom">{{documentR.description}}</ion-text>
       <ion-item>
         <ion-label position="stacked">Ingresar numero de impresiones</ion-label>
         <ion-input type="number"></ion-input>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { docsList } from 'src/app/core/mock/documentsListMock';
 import { Document } from 'src/app/core/models/document.model';
+import { DocumentService } from 'src/app/core/services/document.service';
 
 @Component({
   selector: 'app-documents',
@@ -9,9 +9,17 @@ import { Document } from 'src/app/core/models/document.model';
   styleUrls: ['./documents.page.scss'],
 })
 export class DocumentsPage implements OnInit {
-  docs: Document[] = docsList;
+  // docs: Document[] = docsList;
+  docs: any;
+  documents: any;
 
-  constructor(private router: Router) {}
+  constructor(private documentService: DocumentService) {}
 
-  ngOnInit() {}
+  async ngOnInit() {
+    this.loadDocuments();
+  }
+
+  async loadDocuments() {
+    this.docs = await this.documentService.getDocumentsManaged();
+  }
 }
