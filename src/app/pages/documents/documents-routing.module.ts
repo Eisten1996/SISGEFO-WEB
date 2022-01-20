@@ -6,8 +6,15 @@ import { DocumentsPage } from './documents.page';
 const routes: Routes = [
   {
     path: '',
-    component: DocumentsPage
-  }
+    component: DocumentsPage,
+  },
+  {
+    path: ':id',
+    loadChildren: () =>
+      import('./document-details/document-details.module').then(
+        (m) => m.DocumentDetailsPageModule
+      ),
+  },
 ];
 
 @NgModule({

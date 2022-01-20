@@ -27,7 +27,8 @@ export class LoginPage implements OnInit {
     if (this.authService.login(this.auth) == null) {
       this.presentAlert();
     } else {
-      this.router.navigateByUrl('SISGEFO');
+      window.location.reload();
+      this.router.navigate(['/SISGEFO']);
     }
   }
 

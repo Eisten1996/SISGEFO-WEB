@@ -13,40 +13,30 @@ export class MenuMaterialPage implements OnInit {
       title: 'Documentos',
       subTitle: 'Listado de documentos',
       url: '/SISGEFO/menu/documents',
+      icon: 'document-outline',
     },
     {
       title: 'Cargar PDF',
       subTitle: 'Carga PDF',
       url: '/SISGEFO/menu/uploadPDF',
+      icon: 'file-tray-full-outline',
     },
     {
       title: 'Impresiones',
       subTitle: 'Listado de Impresiones',
       url: '/SISGEFO/menu/prints',
+      icon: 'print-outline',
     },
   ];
 
   selectPath = '';
   subTitle = '';
-  constructor(private router: Router) {}
-
-  ngOnInit() {
-    // this.subTitle = this.pages[0].subTitle;
-    this.router.events.subscribe((event: RouterEvent) => {
-      this.selectPath = event.url;
-      switch (this.selectPath) {
-        case this.pages[0].url:
-          this.subTitle = this.pages[0].subTitle;
-          break;
-        case this.pages[1].url:
-          this.subTitle = this.pages[1].subTitle;
-          break;
-        case this.pages[2].url:
-          this.subTitle = this.pages[2].subTitle;
-          break;
-      }
-    });
+  user: any;
+  constructor(private router: Router) {
+    this.user = JSON.parse(localStorage.getItem('userData'));
   }
+
+  ngOnInit() {}
   @ViewChild('sidenav') sidenav: MatSidenav;
 
   reason = '';
@@ -59,5 +49,10 @@ export class MenuMaterialPage implements OnInit {
   changePage(p) {
     this.subTitle = p.subTitle;
     this.sidenav.close();
+  }
+
+  logout() {
+    localStorage.removeItem('userData');
+    window.location.reload();
   }
 }

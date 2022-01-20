@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Auth } from '../models/auth.models';
 import { authArray } from '../mock/authMock';
 import { userArray } from '../mock/UserMock';
+import { Auth } from '../models/auth.models';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +10,10 @@ export class AuthService {
   authList = authArray;
   userResponse;
   users = userArray;
-  constructor() {}
+  userData: any;
+  constructor() {
+    this.userData = localStorage.getItem('userData');
+  }
 
   public login(auth: Auth) {
     this.userResponse = this.authList.filter(
@@ -19,6 +22,10 @@ export class AuthService {
     console.log(this.userResponse);
 
     if (this.userResponse.length != 0) {
+      localStorage.setItem(
+        'userData',
+        JSON.stringify(this.users.filter((u) => u.email == auth.email)[0])
+      );
       return this.users.filter((u) => u.email == auth.email)[0];
     } else {
       return null;

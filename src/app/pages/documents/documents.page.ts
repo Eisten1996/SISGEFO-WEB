@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { docsList } from 'src/app/core/mock/documentsListMock';
 import { Document } from 'src/app/core/models/document.model';
 
@@ -10,7 +11,7 @@ import { Document } from 'src/app/core/models/document.model';
 export class DocumentsPage implements OnInit {
   docs: Document[] = docsList;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
 }

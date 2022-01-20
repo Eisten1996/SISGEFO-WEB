@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MenuMaterialPage } from './menu-material.page';
-
+import { AuthGuard } from 'src/app/core/guard/auth.guard';
 const routes: Routes = [
   {
     path: 'menu',
     component: MenuMaterialPage,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'documents',
